@@ -8,5 +8,15 @@ before_install:
 script:
   - docker run venkyg/frontend npm run test -- --coverage
 
-
-
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "reactapp"
+  env: "Reactapp-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-632002447425"
+  bucket_path: "reactapp"
+  on:
+   branch: master
+  access_key_id: $AWS_KEY_ID
+  secret_access_key: 
+    secure: "$AWS_ACCESS_KEY"
